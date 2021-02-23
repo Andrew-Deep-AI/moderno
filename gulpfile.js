@@ -42,7 +42,10 @@ function images() {
 function scripts() {
     return src([
         'node_modules/jquery/dist/jquery.js',
-        'app/js/main.js'
+        'app/js/main.js',
+        'node_modules/mixitup/dist/mixitup.js',
+        'node_modules/rateyo/src/jquery.rateyo.js',
+        'node_modules/slick-carousel/slick/slick.js',
     ])
     .pipe(concat('main.min.js'))
     .pipe(uglify())
@@ -53,7 +56,11 @@ function scripts() {
 
 
 function styles() {
-    return src('app/scss/**/*.scss')
+    return src([
+        'app/scss/**/*.scss',
+        'node_modules/rateyo/src/jquery.rateyo.css',
+        'node_modules/slick-carousel/slick/slick.css'
+    ])
         .pipe(scss({outputStyle: 'compressed'}))
         .pipe(concat('style.min.css'))
         .pipe(autoprefixer({
